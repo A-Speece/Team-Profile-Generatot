@@ -172,11 +172,26 @@ function generateEmployeeInfo() {
 function generateHtml() {
   function generateLastProperty(employee) {
     if (employee.getRole() == "Manager") {
-      return `<li class="list-group-item">${employee.officenumber}</li>`;
+      return `<li id="inputhree" class="list-group-item">Office Number: ${employee.officenumber}</li>`;
     } else if (employee.getRole() == "Engineer") {
-      return `<li class="list-group-item">${employee.github}</li>`;
+      return `<li id="inputthree" class="list-group-item">GitHub: ${employee.gitHub}</li>`;
     } else if (employee.getRole() == "Intern") {
-      return `<li class="list-group-item">${employee.school}</li>`;
+      return `<li id="inputthree" class="list-group-item">School: ${employee.school}</li>`;
+    } else {
+      return "";
+    }
+  }
+
+  function generateName(employee) {
+    if (employee.getRole() == "Manager") {
+      return `<h3>${employee.getName()}</h3>
+              <h4>☕Manager</h4>`;
+    } else if (employee.getRole() == "Engineer") {
+      return `<h3>${employee.getName()}</h3>
+      <h4> 🤓Engineer</h4>`;
+    } else if (employee.getRole() == "Intern") {
+      return `<h3>${employee.getName()}</h3>
+      <h4>🎓Intern</h4>`;
     } else {
       return "";
     }
@@ -193,18 +208,18 @@ function generateHtml() {
     </head>
     <body>
       <header id="header">
-        <h1>My Team</h1>
+        <h1 class="blocktext">My Team</h1>
       </header>
       <div id="employeeContainer" class="row row-cols-1 row-cols-md-5">
       ${newEmployees
         .map((employee) => {
           return `<div class="card" style="width: 18rem;">
-          <div class="card-header">
-            ${employee.getName()}
+          <div id="name" class="card-header">
+           ${generateName(employee)}
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">${employee.getId()}</li>
-            <li class="list-group-item">${employee.getEmail()}</li>
+            <li id="inputone" class="list-group-item">ID: ${employee.getId()}</li>
+            <li class="list-group-item">Email: ${employee.getEmail()}</li>
             ${generateLastProperty(employee)}
           </ul>
         </div>`;

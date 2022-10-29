@@ -10,8 +10,40 @@
   margin: 5px;
 }
 
+.blocktext {
+  margin: auto;
+}
+
 #employeeContainer {
   display: flex;
+  justify-content: center;
   padding: 5px;
   margin: 15px;
+}
+
+#name {
+  height: 100px;
+  background-color: rgb(12, 145, 212);
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.card {
+  box-shadow: 5px 5px grey;
+  margin: 50px;
+  background-color: whitesmoke;
+}
+
+.list-group-item {
+  padding: 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#inputone {
+  margin-top: 20px;
+}
+
+#inputthree {
+  margin-bottom: 20px;
 }
