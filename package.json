@@ -1,5 +1,28 @@
 {
+  "name": "team-profile-generatot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-Speece/Team-Profile-Generatot.git"
+  },
   "dependencies": {
-    "inquirer": "^8.2.4"
-  }
+    "inquirer": "^8.2.4",
+    "jest": "^29.2.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/A-Speece/Team-Profile-Generatot/issues"
+  },
+  "homepage": "https://github.com/A-Speece/Team-Profile-Generatot#readme"
 }

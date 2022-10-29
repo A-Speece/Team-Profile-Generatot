@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
 const newEmployees = [];
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
@@ -31,12 +32,13 @@ function createMananger() {
     ])
     .then((answers) => {
       const newManager = new Manager(
-        answer.managerName,
+        answers.managerName,
         answers.managerId,
         answers.managerEmail,
         answers.managerOfficeNumber
       );
       newEmployees.push(newManager);
+      generateEmployeeInfo();
     });
 }
 
@@ -66,12 +68,13 @@ function createEngineer() {
     ])
     .then((answers) => {
       const newEngineer = new Engineer(
-        answer.engineerName,
+        answers.engineerName,
         answers.engineerId,
         answers.engineerEmail,
         answers.engineerGitHub
       );
       newEmployees.push(newEngineer);
+      generateEmployeeInfo();
     });
 }
 
@@ -101,12 +104,13 @@ function createIntern() {
     ])
     .then((answers) => {
       const newIntern = new Intern(
-        answer.internName,
+        answers.internName,
         answers.internId,
         answers.internEmail,
         answers.internSchool
       );
       newEmployees.push(newIntern);
+      generateEmployeeInfo();
     });
 }
 
@@ -131,11 +135,12 @@ function createEmployee() {
     ])
     .then((answers) => {
       const newEmployee = new Employee(
-        answer.employeeName,
+        answers.employeeName,
         answers.employeeId,
         answers.employeeEmail
       );
       newEmployees.push(newEmployee);
+      generateEmployeeInfo();
     });
 }
 
@@ -146,7 +151,7 @@ function generateEmployeeInfo() {
         type: "list",
         name: "employeeChoices",
         message: "Which Employee would you like to create",
-        choices: ["Employee", "Manager", "Engineer", "Intern"],
+        choices: ["Employee", "Manager", "Engineer", "Intern", "None"],
       },
     ])
     .then((answers) => {
@@ -158,8 +163,63 @@ function generateEmployeeInfo() {
         createEngineer();
       } else if (answers.employeeChoices === "Intern") {
         createIntern();
+      } else {
+        generateHtml();
       }
     });
+}
+
+function generateHtml() {
+  function generateLastProperty(employee) {
+    if (employee.getRole() == "Manager") {
+      return `<li class="list-group-item">${employee.officenumber}</li>`;
+    } else if (employee.getRole() == "Engineer") {
+      return `<li class="list-group-item">${employee.github}</li>`;
+    } else if (employee.getRole() == "Intern") {
+      return `<li class="list-group-item">${employee.school}</li>`;
+    } else {
+      return "";
+    }
+  }
+  const htmlCard = `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="./style.css" />
+      <title>Team Member Generator</title>
+    </head>
+    <body>
+      <header id="header">
+        <h1>My Team</h1>
+      </header>
+      <div id="employeeContainer" class="row row-cols-1 row-cols-md-5">
+      ${newEmployees
+        .map((employee) => {
+          return `<div class="card" style="width: 18rem;">
+          <div class="card-header">
+            ${employee.getName()}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">${employee.getId()}</li>
+            <li class="list-group-item">${employee.getEmail()}</li>
+            ${generateLastProperty(employee)}
+          </ul>
+        </div>`;
+        })
+        .join("\n")}
+    
+      
+    
+      </div>
+    </body>
+  </html>
+  `;
+  fs.writeFile("./dist/index.html", htmlCard, () => {
+    console.log("Html has been successfully created");
+  });
 }
 
 generateEmployeeInfo();

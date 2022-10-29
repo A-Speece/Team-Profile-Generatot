@@ -9,3 +9,9 @@
   padding: 2px;
   margin: 5px;
 }
+
+#employeeContainer {
+  display: flex;
+  padding: 5px;
+  margin: 15px;
+}
