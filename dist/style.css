@@ -1,0 +1,11 @@
+#header {
+  display: flex;
+  justify-content: center;
+  height: 125px;
+  width: 99%;
+  color: aliceblue;
+  text-align: center;
+  background-color: rgb(240, 83, 83);
+  padding: 2px;
+  margin: 5px;
+}
