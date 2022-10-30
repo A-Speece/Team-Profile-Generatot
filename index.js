@@ -1,3 +1,4 @@
+// Global Variables
 const inquirer = require("inquirer");
 const fs = require("fs");
 const newEmployees = [];
@@ -6,6 +7,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
 
+//Function to create questions about the manager
 function createMananger() {
   inquirer
     .prompt([
@@ -42,6 +44,7 @@ function createMananger() {
     });
 }
 
+//Function used to create the Engineer employee
 function createEngineer() {
   inquirer
     .prompt([
@@ -78,6 +81,7 @@ function createEngineer() {
     });
 }
 
+// Questions to create the Intern employee
 function createIntern() {
   inquirer
     .prompt([
@@ -114,6 +118,7 @@ function createIntern() {
     });
 }
 
+// Questions to create am Employee
 function createEmployee() {
   inquirer
     .prompt([
@@ -144,6 +149,8 @@ function createEmployee() {
     });
 }
 
+// Function used to start the process of creating a employee card
+// based on the choices that are gave.
 function generateEmployeeInfo() {
   inquirer
     .prompt([
@@ -169,6 +176,7 @@ function generateEmployeeInfo() {
     });
 }
 
+// function used to take the answers to the employee questions and create a html document.
 function generateHtml() {
   function generateLastProperty(employee) {
     if (employee.getRole() == "Manager") {
