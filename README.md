@@ -41,4 +41,4 @@ tesing of the Employee, Manager, Engineer, and Intern have been setup using jest
 
 GitHub Username: A-Speece
 Email: anthonyspeece@gmail.com
-link to the video walkthrough: https://app.castify.com/view/86bb8115-8a84-4a1d-bc95-67d16eea071f
+link to the video walkthrough: https://app.castify.com/view/09d2c4c9-d837-424e-b022-36e215f1db06
